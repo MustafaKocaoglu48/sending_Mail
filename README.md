@@ -7,10 +7,11 @@ Bu uygulama, kullanıcıların belirli bir alıcıya e-posta göndermesine olana
 Kullanıcıdan alıcı e-posta adresi, konu ve içerik alır.
 Gmail SMTP sunucusu üzerinden e-posta gönderimi yapar.
 Kullanıcı dostu bir arayüze sahiptir.
+Kullanıcıdan alınan bilgieri veri tabanına kaydedilmesini sağlar.
 
 
 Form Tasarımı:
-textBox1: Alıcı e-posta adresi
-textBox2: E-posta konusu
-textBox3: E-posta içeriği
+txtMail: Alıcı e-posta adresi
+txtSubject: E-posta konusu
+txtContenents: E-posta içeriği
 button1: "Mail Gönder" butonu
