@@ -26,9 +26,9 @@ namespace sending_Mail
                  
                     string fromAddress = "Your email"; 
                     string password = "Your password";                           
-                    string toAddress = textBox1.Text;                    
-                    string subject = textBox2.Text;                     
-                    string body = textBox3.Text;                       
+                    string toAddress = txtMail.Text;                    
+                    string subject = txtSubject.Text;                     
+                    string body = txtContenents.Text;                       
 
                    
                     MailMessage mail = new MailMessage(fromAddress, toAddress, subject, body);
