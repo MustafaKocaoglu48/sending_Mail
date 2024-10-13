@@ -5,6 +5,10 @@ using System;
 using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+
+
 
 
 namespace sending_Mail
@@ -19,35 +23,39 @@ namespace sending_Mail
         private void button1_Click(object sender, EventArgs e)
         {
 
+          
+            DateTime tarih = dateTime.Value;
 
            
-                try
+            string formattedDate = tarih.ToString("dd/MM/yyyy").TrimEnd('0', ':');
+
+            Send_Mail mailSender = new Send_Mail();
+            mailSender.SendEmail(txtMail.Text, txtSubject.Text, txtContenents.Text);
+
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection("Your database according;"))
                 {
-                 
-                    string fromAddress = "Your email"; 
-                    string password = "Your password";                           
-                    string toAddress = txtMail.Text;                    
-                    string subject = txtSubject.Text;                     
-                    string body = txtContenents.Text;                       
-
-                   
-                    MailMessage mail = new MailMessage(fromAddress, toAddress, subject, body);
-
-                    // SmtpClient ayarları
-                    SmtpClient smtp = new SmtpClient
+                    string query = "INSERT INTO Note_To_Future (Konu, Icerik, Tarih,Mail) VALUES (@Konu, @Icerik, @Tarih, @Mail)";
+                    using (SqlCommand cmd = new SqlCommand(query, con))
                     {
-                        Host = "smtp.gmail.com", 
-                        Port = 587,              
-                        EnableSsl = true,        
-                        DeliveryMethod = SmtpDeliveryMethod.Network,
-                        UseDefaultCredentials = false,
-                        Credentials = new NetworkCredential(fromAddress, password)
-                    };
+                        cmd.Parameters.Add("@Mail", SqlDbType.NVarChar).Value = txtMail.Text; 
+                        cmd.Parameters.Add("@Konu", SqlDbType.NVarChar).Value = txtSubject.Text; 
+                        cmd.Parameters.Add("@Icerik", SqlDbType.NVarChar).Value = txtContenents.Text; 
+                        cmd.Parameters.Add("@Tarih", SqlDbType.DateTime).Value = formattedDate;
 
-                  
-                    smtp.Send(mail);
-                    MessageBox.Show("Email was sent successfully.");
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
                 }
+
+
+                MessageBox.Show("Record added successfully.");
+                txtContenents.Text = "";
+                txtMail.Text = "";
+                txtSubject.Text = "";
+            }
                 catch (Exception ex)
                 {
                     MessageBox.Show("An error occurred while sending the email: " + ex.Message);

@@ -35,6 +35,8 @@
             this.txtSubject = new System.Windows.Forms.TextBox();
             this.txtContenents = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.dateTime = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -109,12 +111,31 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // dateTime
+            // 
+            this.dateTime.Location = new System.Drawing.Point(230, 12);
+            this.dateTime.Name = "dateTime";
+            this.dateTime.Size = new System.Drawing.Size(200, 22);
+            this.dateTime.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label4.Location = new System.Drawing.Point(99, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 20);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Date";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::sending_Mail.Properties.Resources.telefon_duvar_kagitlari_8;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.dateTime);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtContenents);
             this.Controls.Add(this.txtSubject);
@@ -138,6 +159,8 @@
         private System.Windows.Forms.TextBox txtSubject;
         private System.Windows.Forms.TextBox txtContenents;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker dateTime;
+        private System.Windows.Forms.Label label4;
     }
 }
 
